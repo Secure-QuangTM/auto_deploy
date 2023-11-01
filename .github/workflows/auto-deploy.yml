@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest  # You can specify your desired runner
 
     steps:
+      - name: List files in the workflow directory
+        run: |
+          ls -l
+          
       - name: Create SSH private key file
         run: |
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > private-key.pem
