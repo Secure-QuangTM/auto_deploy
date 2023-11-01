@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: List files in the workflow directory
         run: |
-          ls -l
+          pwd
           
       - name: Create SSH private key file
         run: |
