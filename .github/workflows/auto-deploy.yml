@@ -1,0 +1,26 @@
+name: Auto Deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # You can specify your desired runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create SSH private key file
+        run: |
+          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > private-key.pem
+          chmod 600 private-key.pem
+        shell: bash
+      
+      - name: SSH into EC2 and run git pull
+        run: |
+          ssh -i private-key.pem ec2-user@your-ec2-ip 'bash -s' < update-repo.sh
+        env:
+          EC2_SSH_PRIVATE_KEY_PATH: ./private-key.pem
