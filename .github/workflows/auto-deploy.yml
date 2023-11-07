@@ -13,7 +13,7 @@ jobs:
 
       - name: Copy files to GITHUB_WORKSPACE
         run: |
-          cp update-repo.sh $GITHUB_WORKSPACE/
+          cat $GITHUB_WORKSPACE/update-repo.sh
           
       - name: List files in the workflow directory
         run: |
