@@ -22,6 +22,6 @@ jobs:
       
       - name: SSH into EC2 and run git pull
         run: |
-          ssh -i private-key.pem ec2-user@18.182.27.193 'bash -s' < update-repo.sh
+          ssh -o -i private-key.pem ec2-user@18.182.27.193 'bash -s' < $GITHUB_WORKSPACE/update-repo.sh
         env:
           EC2_SSH_PRIVATE_KEY_PATH: ./private-key.pem
