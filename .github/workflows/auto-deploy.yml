@@ -11,9 +11,8 @@ jobs:
 
     steps:
 
-      - name: Copy files to GITHUB_WORKSPACE
-        run: |
-          cat $GITHUB_WORKSPACE/update-repo.sh
+      - name: Checkout repository
+        uses: actions/checkout@v2
           
       - name: List files in the workflow directory
         run: |
