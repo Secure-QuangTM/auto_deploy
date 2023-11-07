@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest  # You can specify your desired runner
 
     steps:
+
+      - name: Copy files to GITHUB_WORKSPACE
+        run: |
+          cp update-repo.sh $GITHUB_WORKSPACE/
+          
       - name: List files in the workflow directory
         run: |
             ls -l $GITHUB_WORKSPACE
