@@ -14,14 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
           
-      - name: List files in the workflow directory
-        run: |
-            ls -l $GITHUB_WORKSPACE
-
-      - name: Run update-repo.sh
-        run: |
-          bash $GITHUB_WORKSPACE/update-repo.sh
-          
       - name: Create SSH private key file
         run: |
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > private-key.pem
@@ -30,6 +22,6 @@ jobs:
       
       - name: SSH into EC2 and run git pull
         run: |
-          ssh -i private-key.pem ec2-user@18.182.27.193 'bash -s' < $GITHUB_WORKSPACE/update-repo.sh
+          ssh -i private-key.pem ec2-user@18.182.27.193 'bash -s' < update-repo.sh
         env:
           EC2_SSH_PRIVATE_KEY_PATH: ./private-key.pem
